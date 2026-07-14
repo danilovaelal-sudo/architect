@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { KineticReveal } from "@/components/site/animated-text";
 
 const topics = [
   "книга",
@@ -59,12 +60,19 @@ export function HowToOrder() {
         </Card>
 
         <div className="mt-16 space-y-2 text-center font-display text-xl italic leading-relaxed text-ink-soft">
-          <p>Здесь можно приходить не только с готовым проектом.</p>
-          <p>Можно приходить с непониманием. С черновиками.</p>
-          <p>С «я не знаю, что я хочу сказать».</p>
+          <p>
+            <KineticReveal text="Здесь можно приходить не только с готовым проектом." />
+          </p>
+          <p>
+            <KineticReveal text="Можно приходить с непониманием. С черновиками." />
+          </p>
+          <p>
+            <KineticReveal text="С «я не знаю, что я хочу сказать»." />
+          </p>
           <p className="pt-4 text-ink">
-            Не придумать красивую упаковку поверх пустоты —
-            <br />а найти живую суть и дать ей форму.
+            <KineticReveal text="Не придумать красивую упаковку поверх пустоты —" />
+            <br />
+            <KineticReveal text="а найти живую суть и дать ей форму." />
           </p>
         </div>
       </div>

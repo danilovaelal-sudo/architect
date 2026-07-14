@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { AssemblingWords } from "@/components/site/animated-text";
 
 export function Hero() {
   return (
@@ -12,14 +13,16 @@ export function Hero() {
         className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto max-w-4xl text-center">
         <span className="font-display text-sm italic tracking-wide text-clay">
           Елена Данилова
         </span>
 
-        <h1 className="mt-6 text-balance font-display text-5xl leading-[1.1] text-ink md:text-6xl">
-          Найти живую суть{" "}
-          <span className="italic text-clay">и дать ей форму</span>
+        <h1 className="mt-6 text-balance font-display text-6xl leading-[1.02] tracking-tight text-ink sm:text-7xl md:text-8xl">
+          <AssemblingWords text="Найти живую суть" />{" "}
+          <span className="italic text-clay">
+            <AssemblingWords text="и дать ей форму" startIndex={3} />
+          </span>
         </h1>
 
         <p className="mx-auto mt-8 max-w-xl text-balance text-lg leading-relaxed text-ink-soft">

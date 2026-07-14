@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
 
 const links = [
   { href: "#about", label: "О мастерской" },
@@ -18,9 +19,10 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-ink-soft transition-colors hover:text-clay"
+              className="group relative text-sm text-ink-soft transition-colors hover:text-clay"
             >
               {link.label}
+              <SquiggleUnderline className="text-clay" />
             </a>
           ))}
         </nav>

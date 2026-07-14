@@ -25,7 +25,7 @@ export function Services() {
             <AccordionItem key={service.number} value={service.number}>
               <AccordionTrigger>
                 <span className="flex items-baseline gap-4">
-                  <span className="font-sans text-sm text-clay">
+                  <span className="font-sans text-sm text-clay transition-all duration-500 ease-out group-data-[state=open]:text-4xl group-data-[state=open]:text-clay/25">
                     {service.number}
                   </span>
                   {service.title}
