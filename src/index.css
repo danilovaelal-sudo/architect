@@ -12,26 +12,6 @@
   --color-clay-soft: #d98a5f;
   --color-sage: #6b7758;
   --color-line: #ddd0b8;
-
-  --animate-accordion-down: accordion-down 0.25s ease-out;
-  --animate-accordion-up: accordion-up 0.25s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
 }
 
 @layer base {
@@ -107,24 +87,5 @@
 
   .group:hover .squiggle-path {
     stroke-dashoffset: 0;
-  }
-
-  .page-turn {
-    transform-origin: top center;
-  }
-
-  [data-state="open"] > .page-turn {
-    animation: page-turn-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  @keyframes page-turn-in {
-    from {
-      opacity: 0;
-      transform: perspective(800px) rotateX(-14deg);
-    }
-    to {
-      opacity: 1;
-      transform: perspective(800px) rotateX(0deg);
-    }
   }
 }
