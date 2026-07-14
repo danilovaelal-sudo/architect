@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
 
@@ -8,6 +10,8 @@ const links = [
 ];
 
 export function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-sm">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -17,6 +21,7 @@ export function Header() {
         >
           Смысловая мастерская
         </a>
+
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <a
@@ -29,10 +34,50 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <Button asChild size="sm">
-          <a href="#order">Написать мне</a>
-        </Button>
+
+        <div className="flex items-center gap-2">
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <a href="#order">Написать мне</a>
+          </Button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={open}
+            className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:text-clay md:hidden"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
+
+      {open && (
+        <nav className="border-t border-line/70 bg-paper px-6 py-4 md:hidden">
+          <ul className="flex flex-col gap-4">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block text-base text-ink-soft transition-colors hover:text-clay"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <Button
+                asChild
+                size="sm"
+                className="w-full"
+                onClick={() => setOpen(false)}
+              >
+                <a href="#order">Написать мне</a>
+              </Button>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }
