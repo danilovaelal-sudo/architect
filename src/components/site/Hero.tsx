@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { AssemblingLetters } from "@/components/site/animated-text";
-import { SketchLines } from "@/components/site/sketch-lines";
+import { HeroSketchLines } from "@/components/site/sketch-lines";
 
 export function Hero() {
   return (
@@ -14,7 +14,7 @@ export function Hero() {
         className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
       />
 
-      <SketchLines />
+      <HeroSketchLines />
 
       <div className="relative mx-auto max-w-4xl text-center">
         <span className="font-display text-sm italic tracking-wide text-clay">

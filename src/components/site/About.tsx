@@ -1,3 +1,5 @@
+import { SketchMotif } from "@/components/site/sketch-lines";
+
 const recognitions = [
   "Есть история, но нет структуры.",
   "Есть опыт, но непонятно, как сделать из него курс.",
@@ -8,8 +10,16 @@ const recognitions = [
 
 export function About() {
   return (
-    <section id="about" className="border-t border-line/70 px-6 py-24">
-      <div className="mx-auto max-w-3xl text-center">
+    <section
+      id="about"
+      className="relative overflow-hidden border-t border-line/70 px-6 py-24"
+    >
+      <SketchMotif
+        variant="corner-tick"
+        className="pointer-events-none absolute right-4 top-4 h-16 w-16 text-clay/30 md:right-10 md:top-10 md:h-20 md:w-20"
+      />
+
+      <div className="relative mx-auto max-w-3xl text-center">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">
           О мастерской
         </span>
