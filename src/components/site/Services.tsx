@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
 
@@ -87,6 +88,16 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
+
+                  <Button asChild variant="outline" size="sm" className="mt-6 w-full">
+                    <a
+                      href="https://vk.me/danilovaelal"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Обсудить проект
+                    </a>
+                  </Button>
                 </div>
               </div>
             </article>
