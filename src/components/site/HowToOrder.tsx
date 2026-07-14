@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { KineticReveal } from "@/components/site/animated-text";
-import { SketchMotif } from "@/components/site/sketch-lines";
+import { HandNote } from "@/components/site/hand-note";
 
 const topics = [
   "книга",
@@ -16,16 +16,8 @@ const topics = [
 
 export function HowToOrder() {
   return (
-    <section
-      id="order"
-      className="relative overflow-hidden border-t border-line/70 px-6 py-24"
-    >
-      <SketchMotif
-        variant="frame-circle"
-        className="pointer-events-none absolute -right-10 bottom-4 h-40 w-40 text-ink/15 md:h-52 md:w-52"
-      />
-
-      <div className="relative mx-auto max-w-3xl">
+    <section id="order" className="border-t border-line/70 px-6 py-24">
+      <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">
             Как заказать
@@ -59,7 +51,12 @@ export function HowToOrder() {
             Я задам несколько вопросов и предложу подходящий формат.
           </p>
 
-          <div className="mt-8">
+          <div className="relative mt-16 inline-block">
+            <HandNote
+              text="это просто :)"
+              arrow="down-left"
+              className="-right-8 -top-16 hidden rotate-6 sm:-right-14 sm:block"
+            />
             <Button asChild size="default">
               <a
                 href="https://vk.me/danilovaelal"

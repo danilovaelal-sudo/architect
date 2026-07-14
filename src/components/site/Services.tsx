@@ -1,20 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { SketchMotif } from "@/components/site/sketch-lines";
 import { cn } from "@/lib/utils";
 import { services } from "@/data/services";
 
 export function Services() {
   return (
-    <section
-      id="services"
-      className="relative overflow-hidden border-t border-line/70 px-6 py-24"
-    >
-      <SketchMotif
-        variant="circle-cross"
-        className="pointer-events-none absolute -left-8 top-4 h-40 w-40 text-ink/15 md:h-52 md:w-52"
-      />
-
-      <div className="relative mx-auto max-w-5xl">
+    <section id="services" className="border-t border-line/70 px-6 py-24">
+      <div className="mx-auto max-w-5xl">
         <div className="text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">
             Форматы
@@ -45,15 +36,10 @@ export function Services() {
               key={service.number}
               id={`format-${service.number}`}
               className={cn(
-                "relative scroll-mt-28 overflow-hidden rounded-3xl px-6 py-12 md:px-10",
+                "scroll-mt-28 rounded-3xl px-6 py-12 md:px-10",
                 index % 2 === 1 && "bg-paper-soft/50",
               )}
             >
-              <SketchMotif
-                variant="corner-tick"
-                className="pointer-events-none absolute right-6 top-6 h-12 w-12 text-clay/30 md:right-8 md:top-8 md:h-14 md:w-14"
-              />
-
               <div className="flex flex-wrap items-baseline gap-4">
                 <span className="font-display text-5xl text-clay/25 md:text-6xl">
                   {service.number}

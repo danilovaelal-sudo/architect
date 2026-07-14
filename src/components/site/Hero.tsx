@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { AssemblingLetters } from "@/components/site/animated-text";
-import { HeroSketchLines } from "@/components/site/sketch-lines";
+import { HandNote } from "@/components/site/hand-note";
 
 export function Hero() {
   return (
@@ -13,8 +13,6 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
       />
-
-      <HeroSketchLines />
 
       <div className="relative mx-auto max-w-4xl text-center">
         <span className="font-display text-sm italic tracking-wide text-clay">
@@ -34,7 +32,12 @@ export function Hero() {
           предложение. В проект, который уже можно показать людям.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="relative mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <HandNote
+            text="начните здесь"
+            arrow="down-right"
+            className="-left-6 -top-14 hidden -rotate-6 sm:-left-10 sm:block"
+          />
           <Button asChild size="default">
             <a href="#services">Смотреть форматы</a>
           </Button>

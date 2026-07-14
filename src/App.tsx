@@ -7,7 +7,8 @@ import { Footer } from "@/components/site/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen">
+      <div aria-hidden className="paper-texture pointer-events-none fixed inset-0 -z-10" />
       <Header />
       <main>
         <Hero />

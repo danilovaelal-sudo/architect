@@ -3,6 +3,7 @@
 @theme {
   --font-display: "Fraunces", "Georgia", serif;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
 
   --color-paper: #f6f1e6;
   --color-paper-soft: #efe7d8;
@@ -89,19 +90,24 @@
     stroke-dashoffset: 0;
   }
 
-  .sketch-path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 100;
+  .paper-texture {
+    background-color: var(--color-paper);
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(42, 36, 29, 0.05) 0,
+        rgba(42, 36, 29, 0.05) 1px,
+        transparent 1px,
+        transparent 128px
+      ),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16 0 0 0 0 0.14 0 0 0 0 0.11 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:
+      128px 100%,
+      180px 180px;
   }
 
-  .sketch-line {
-    animation: sketch-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) both;
-    animation-delay: calc(var(--i) * 260ms);
-  }
-
-  @keyframes sketch-draw {
-    to {
-      stroke-dashoffset: 0;
-    }
+  .hand-note {
+    font-family: var(--font-hand);
+    line-height: 1;
   }
 }
