@@ -2,44 +2,61 @@ import { Fragment } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 
-const SCATTER = [
-  { tx: "-18px", ty: "-14px", rot: "-8deg" },
-  { tx: "14px", ty: "10px", rot: "6deg" },
-  { tx: "-10px", ty: "16px", rot: "10deg" },
-  { tx: "16px", ty: "-12px", rot: "-6deg" },
-  { tx: "-14px", ty: "8px", rot: "5deg" },
-  { tx: "10px", ty: "-16px", rot: "-9deg" },
-  { tx: "-8px", ty: "-10px", rot: "7deg" },
+const SCATTER_LETTERS = [
+  { tx: "-70px", ty: "-46px", rot: "-22deg" },
+  { tx: "84px", ty: "-34px", rot: "16deg" },
+  { tx: "-58px", ty: "52px", rot: "24deg" },
+  { tx: "66px", ty: "48px", rot: "-19deg" },
+  { tx: "-96px", ty: "8px", rot: "11deg" },
+  { tx: "96px", ty: "-6px", rot: "-14deg" },
+  { tx: "6px", ty: "-78px", rot: "9deg" },
+  { tx: "-4px", ty: "76px", rot: "-10deg" },
+  { tx: "-44px", ty: "-64px", rot: "17deg" },
+  { tx: "54px", ty: "64px", rot: "-23deg" },
+  { tx: "78px", ty: "-58px", rot: "20deg" },
+  { tx: "-82px", ty: "44px", rot: "-15deg" },
 ];
 
-interface AssemblingWordsProps {
+interface AssemblingLettersProps {
   text: string;
   startIndex?: number;
 }
 
-export function AssemblingWords({ text, startIndex = 0 }: AssemblingWordsProps) {
+export function AssemblingLetters({ text, startIndex = 0 }: AssemblingLettersProps) {
   const words = text.split(" ");
+  let runningIndex = startIndex;
 
   return (
     <>
-      {words.map((word, i) => {
-        const seed = SCATTER[(startIndex + i) % SCATTER.length];
+      {words.map((word, wi) => {
+        const wordStart = runningIndex;
+        runningIndex += word.length;
+
         return (
-          <Fragment key={i}>
-            <span
-              className="word-settle inline-block"
-              style={
-                {
-                  "--i": startIndex + i,
-                  "--tx": seed.tx,
-                  "--ty": seed.ty,
-                  "--rot": seed.rot,
-                } as React.CSSProperties
-              }
-            >
-              {word}
+          <Fragment key={wi}>
+            <span className="inline-block whitespace-nowrap">
+              {word.split("").map((letter, li) => {
+                const i = wordStart + li;
+                const seed = SCATTER_LETTERS[i % SCATTER_LETTERS.length];
+                return (
+                  <span
+                    key={li}
+                    className="letter-settle inline-block"
+                    style={
+                      {
+                        "--i": i,
+                        "--tx": seed.tx,
+                        "--ty": seed.ty,
+                        "--rot": seed.rot,
+                      } as React.CSSProperties
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
             </span>
-            {i < words.length - 1 ? " " : ""}
+            {wi < words.length - 1 ? " " : ""}
           </Fragment>
         );
       })}

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { AssemblingWords } from "@/components/site/animated-text";
+import { AssemblingLetters } from "@/components/site/animated-text";
 
 export function Hero() {
   return (
@@ -19,9 +19,9 @@ export function Hero() {
         </span>
 
         <h1 className="mt-6 text-balance font-display text-6xl leading-[1.02] tracking-tight text-ink sm:text-7xl md:text-8xl">
-          <AssemblingWords text="Найти живую суть" />{" "}
+          <AssemblingLetters text="Найти живую суть" />{" "}
           <span className="italic text-clay">
-            <AssemblingWords text="и дать ей форму" startIndex={3} />
+            <AssemblingLetters text="и дать ей форму" startIndex={14} />
           </span>
         </h1>
 
