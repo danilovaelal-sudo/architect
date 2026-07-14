@@ -11,7 +11,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-sm">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-display text-lg text-ink">
+        <a
+          href="#top"
+          className="font-display text-xl font-medium tracking-tight text-ink transition-colors hover:text-clay sm:text-2xl"
+        >
           Смысловая мастерская
         </a>
         <nav className="hidden items-center gap-8 md:flex">
