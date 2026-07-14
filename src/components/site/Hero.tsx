@@ -1,0 +1,42 @@
+import { Button } from "@/components/ui/button";
+
+export function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden px-6 pb-24 pt-20 md:pt-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-32 -top-24 h-96 w-96 rounded-full bg-clay/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-3xl text-center">
+        <span className="font-display text-sm italic tracking-wide text-clay">
+          Елена Данилова
+        </span>
+
+        <h1 className="mt-6 text-balance font-display text-5xl leading-[1.1] text-ink md:text-6xl">
+          Найти живую суть{" "}
+          <span className="italic text-clay">и дать ей форму</span>
+        </h1>
+
+        <p className="mx-auto mt-8 max-w-xl text-balance text-lg leading-relaxed text-ink-soft">
+          Я помогаю собирать опыт, идеи, тексты и внутренние переходы в
+          понятную форму. В книгу. В курс. В сайт. В текст. В ясное
+          предложение. В проект, который уже можно показать людям.
+        </p>
+
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button asChild size="default">
+            <a href="#services">Смотреть форматы</a>
+          </Button>
+          <Button asChild variant="outline" size="default">
+            <a href="#about">О мастерской</a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
