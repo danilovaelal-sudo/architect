@@ -52,7 +52,11 @@ export function HowToOrder() {
 
           <div className="mt-8">
             <Button asChild size="default">
-              <a href="mailto:danilovaelal@gmail.com?subject=Хочу%20в%20Смысловую%20мастерскую">
+              <a
+                href="https://vk.me/danilovaelal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Написать мне
               </a>
             </Button>
