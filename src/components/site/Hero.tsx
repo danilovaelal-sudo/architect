@@ -22,10 +22,15 @@ export function Hero() {
           Елена Данилова
         </span>
 
-        <h1 className="mt-6 text-balance font-display text-6xl leading-[1.02] tracking-tight text-ink sm:text-7xl md:text-8xl">
-          <AssemblingLetters text="Найти живую суть" />{" "}
-          <span className="italic text-clay">
-            <AssemblingLetters text="и дать ей форму" startIndex={14} />
+        <h1
+          aria-label="Найти живую суть и дать ей форму"
+          className="mt-6 text-balance font-display text-6xl leading-[1.02] tracking-tight text-ink sm:text-7xl md:text-8xl"
+        >
+          <span aria-hidden="true">
+            <AssemblingLetters text="Найти живую суть" />{" "}
+            <span className="italic text-clay">
+              <AssemblingLetters text="и дать ей форму" startIndex={14} />
+            </span>
           </span>
         </h1>
 
