@@ -16,7 +16,7 @@ const topics = [
 
 export function HowToOrder() {
   return (
-    <section id="order" className="border-t border-line/70 px-6 py-24">
+    <section id="order" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">

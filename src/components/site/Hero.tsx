@@ -4,7 +4,10 @@ import { HandNote } from "@/components/site/hand-note";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-6 pb-24 pt-20 md:pt-28">
+    <section
+      id="top"
+      className="relative scroll-mt-20 overflow-hidden px-6 pb-24 pt-20 md:pt-28"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-32 -top-24 h-96 w-96 rounded-full bg-clay/10 blur-3xl"
