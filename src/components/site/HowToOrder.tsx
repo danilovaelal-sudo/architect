@@ -75,6 +75,7 @@ export function HowToOrder() {
 
           <p className="mt-8 text-sm leading-relaxed text-ink-soft">
             Я задам несколько вопросов и предложу подходящий формат.
+            Отвечаю {siteSettings.responseTime}.
           </p>
 
           <div className="relative mt-16 inline-block">
