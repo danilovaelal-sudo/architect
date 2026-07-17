@@ -6,6 +6,14 @@ const recognitions = [
   "Есть переход в жизни, но непонятно, на что теперь опереться.",
 ];
 
+const outcomes = [
+  "ясную формулировку идеи",
+  "структуру проекта",
+  "понимание следующего шага",
+  "текст, план или концепцию",
+  "материалы, к которым можно вернуться после работы",
+];
+
 export function About() {
   return (
     <section id="about" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
@@ -22,17 +30,47 @@ export function About() {
         </p>
       </div>
 
-      <ul className="mx-auto mt-14 max-w-2xl space-y-5">
+      <ul className="mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-3 sm:grid-cols-2">
         {recognitions.map((line) => (
           <li
             key={line}
-            className="flex gap-4 border-b border-line/70 pb-5 font-display text-xl leading-snug text-ink last:border-none"
+            className="flex gap-3 text-base leading-snug text-ink"
           >
-            <span className="text-clay">—</span>
+            <span aria-hidden="true" className="text-clay">
+              —
+            </span>
             {line}
           </li>
         ))}
       </ul>
+
+      <div className="mx-auto mt-16 max-w-xl border-t border-line/70 pt-12 text-center">
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">
+          Как я работаю
+        </span>
+        <p className="mt-4 leading-relaxed text-ink-soft">
+          Сначала — разговор: я задаю вопросы, чтобы понять, что для вас
+          на самом деле важно и что сейчас мешает сдвинуться с места.
+          Дальше мы вместе собираем это в понятную форму — план, текст,
+          структуру или концепцию, с которой можно двигаться дальше.
+        </p>
+      </div>
+
+      <div className="mx-auto mt-12 max-w-xl rounded-3xl border border-line bg-paper-soft/50 p-8">
+        <h3 className="text-center font-display text-xl text-ink">
+          Что вы получите
+        </h3>
+        <ul className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
+          {outcomes.map((item) => (
+            <li key={item} className="flex gap-3 text-sm text-ink-soft">
+              <span aria-hidden="true" className="text-clay">
+                —
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
