@@ -77,22 +77,47 @@ export function Services() {
                         />
                       </summary>
 
-                      <div className="px-5 pb-6">
+                      <div className="px-5 pb-6 sm:px-6">
                         <p className="leading-relaxed text-ink-soft">
-                          {service.intro}
+                          {service.forWhom}
                         </p>
 
-                        {service.points && (
-                          <ul className="mt-5 flex flex-wrap gap-2">
-                            {service.points.map((point) => (
+                        {service.included && (
+                          <ul className="mt-5 space-y-2">
+                            {service.included.map((item) => (
                               <li
-                                key={point}
-                                className="rounded-full border border-line px-3 py-1.5 text-sm text-ink-soft"
+                                key={item}
+                                className="flex gap-2 text-sm leading-snug text-ink-soft"
                               >
-                                {point}
+                                <span aria-hidden="true" className="text-clay">
+                                  —
+                                </span>
+                                {item}
                               </li>
                             ))}
                           </ul>
+                        )}
+
+                        {service.result && (
+                          <div className="mt-5">
+                            <p className="text-xs font-medium uppercase tracking-[0.15em] text-clay">
+                              Результат
+                            </p>
+                            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                              {service.result}
+                            </p>
+                          </div>
+                        )}
+
+                        {service.format && (
+                          <div className="mt-5">
+                            <p className="text-xs font-medium uppercase tracking-[0.15em] text-clay">
+                              Формат
+                            </p>
+                            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                              {service.format}
+                            </p>
+                          </div>
                         )}
 
                         {service.note && (
@@ -102,15 +127,18 @@ export function Services() {
                         )}
 
                         <div className="mt-6 rounded-2xl border border-line bg-paper p-5">
-                          <ul className="space-y-4">
+                          <ul className="space-y-3">
                             {service.prices.map((price) => (
-                              <li key={price.label}>
-                                <p className="text-xs uppercase tracking-wide text-ink-soft">
+                              <li
+                                key={price.label}
+                                className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5"
+                              >
+                                <span className="text-sm text-ink-soft">
                                   {price.label}
-                                </p>
-                                <p className="mt-1 font-display text-xl text-clay">
+                                </span>
+                                <span className="font-display text-lg text-clay">
                                   {price.value}
-                                </p>
+                                </span>
                               </li>
                             ))}
                           </ul>
@@ -126,7 +154,7 @@ export function Services() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              Обсудить проект
+                              {service.ctaLabel}
                             </a>
                           </Button>
                         </div>
