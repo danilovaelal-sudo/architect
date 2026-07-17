@@ -5,6 +5,7 @@ import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { Author } from "@/components/site/Author";
+import { Testimonials } from "@/components/site/Testimonials";
 import { HowToOrder } from "@/components/site/HowToOrder";
 import { Footer } from "@/components/site/Footer";
 
@@ -35,6 +36,7 @@ function App() {
         <Services />
         <HowItWorks />
         <Author />
+        <Testimonials />
         <HowToOrder />
       </main>
       <Footer />
