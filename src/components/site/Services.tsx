@@ -1,6 +1,15 @@
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { directions } from "@/data/directions";
 import { services } from "@/data/services";
+
+function getService(number: string) {
+  const service = services.find((s) => s.number === number);
+  if (!service) {
+    throw new Error(`Service ${number} not found`);
+  }
+  return service;
+}
 
 export function Services() {
   return (
@@ -16,97 +25,117 @@ export function Services() {
         </div>
 
         <nav
-          aria-label="Быстрый переход к формату"
+          aria-label="Быстрый переход к направлению"
           className="mt-10 flex flex-wrap justify-center gap-2"
         >
           <ul className="flex flex-wrap justify-center gap-2">
-            {services.map((service) => (
-              <li key={service.number}>
+            {directions.map((direction) => (
+              <li key={direction.id}>
                 <a
-                  href={`#format-${service.number}`}
-                  className="flex h-11 min-w-11 items-center justify-center rounded-full border border-line px-3 text-xs text-ink-soft transition-colors hover:border-clay hover:text-clay"
+                  href={`#direction-${direction.id}`}
+                  className="flex min-h-11 items-center rounded-full border border-line px-4 text-sm text-ink-soft transition-colors hover:border-clay hover:text-clay"
                 >
-                  {service.number}
+                  {direction.title}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="mt-16">
-          {services.map((service, index) => (
-            <article
-              key={service.number}
-              id={`format-${service.number}`}
-              className={cn(
-                "scroll-mt-28 rounded-3xl px-6 py-12 md:px-10",
-                index % 2 === 1 && "bg-paper-soft/50",
-              )}
+        <div className="mt-16 space-y-16">
+          {directions.map((direction) => (
+            <div
+              key={direction.id}
+              id={`direction-${direction.id}`}
+              className="scroll-mt-24"
             >
-              <div className="flex flex-wrap items-baseline gap-4">
-                <span
-                  aria-hidden="true"
-                  className="font-display text-5xl text-clay/25 md:text-6xl"
-                >
-                  {service.number}
-                </span>
-                <h3 className="text-balance font-display text-2xl text-ink md:text-3xl">
-                  {service.title}
+              <div className="max-w-2xl">
+                <h3 className="font-display text-2xl text-ink md:text-3xl">
+                  {direction.title}
                 </h3>
+                <p className="mt-2 leading-relaxed text-ink-soft">
+                  {direction.description}
+                </p>
               </div>
 
-              <div className="mt-8 grid gap-10 md:grid-cols-[1fr_18rem] md:items-start">
-                <div>
-                  <p className="leading-relaxed text-ink-soft">
-                    {service.intro}
-                  </p>
-
-                  {service.points && (
-                    <ul className="mt-6 flex flex-wrap gap-2">
-                      {service.points.map((point) => (
-                        <li
-                          key={point}
-                          className="rounded-full border border-line px-3 py-1.5 text-sm text-ink-soft"
-                        >
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {service.note && (
-                    <p className="mt-6 border-l-2 border-clay/40 pl-4 text-sm italic leading-relaxed text-ink-soft">
-                      {service.note}
-                    </p>
-                  )}
-                </div>
-
-                <div className="rounded-2xl border border-line bg-paper p-6">
-                  <ul className="space-y-4">
-                    {service.prices.map((price) => (
-                      <li key={price.label}>
-                        <p className="text-xs uppercase tracking-wide text-ink-soft">
-                          {price.label}
-                        </p>
-                        <p className="mt-1 font-display text-xl text-clay">
-                          {price.value}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button asChild variant="outline" size="sm" className="mt-6 w-full">
-                    <a
-                      href="https://vk.me/danilovaelal"
-                      target="_blank"
-                      rel="noopener noreferrer"
+              <div className="mt-8 space-y-4">
+                {direction.serviceNumbers.map((number) => {
+                  const service = getService(number);
+                  return (
+                    <details
+                      key={number}
+                      id={`format-${number}`}
+                      className="group scroll-mt-28 rounded-2xl border border-line bg-paper-soft/40 open:bg-paper-soft/60"
                     >
-                      Обсудить проект
-                    </a>
-                  </Button>
-                </div>
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 marker:content-none">
+                        <span className="font-display text-lg text-ink md:text-xl">
+                          {service.title}
+                        </span>
+                        <ChevronDown
+                          aria-hidden="true"
+                          className="h-5 w-5 shrink-0 text-ink-soft transition-transform duration-300 group-open:rotate-180"
+                        />
+                      </summary>
+
+                      <div className="px-5 pb-6">
+                        <p className="leading-relaxed text-ink-soft">
+                          {service.intro}
+                        </p>
+
+                        {service.points && (
+                          <ul className="mt-5 flex flex-wrap gap-2">
+                            {service.points.map((point) => (
+                              <li
+                                key={point}
+                                className="rounded-full border border-line px-3 py-1.5 text-sm text-ink-soft"
+                              >
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {service.note && (
+                          <p className="mt-5 border-l-2 border-clay/40 pl-4 text-sm italic leading-relaxed text-ink-soft">
+                            {service.note}
+                          </p>
+                        )}
+
+                        <div className="mt-6 rounded-2xl border border-line bg-paper p-5">
+                          <ul className="space-y-4">
+                            {service.prices.map((price) => (
+                              <li key={price.label}>
+                                <p className="text-xs uppercase tracking-wide text-ink-soft">
+                                  {price.label}
+                                </p>
+                                <p className="mt-1 font-display text-xl text-clay">
+                                  {price.value}
+                                </p>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <Button
+                            asChild
+                            variant="outline"
+                            size="sm"
+                            className="mt-6 w-full"
+                          >
+                            <a
+                              href="https://vk.me/danilovaelal"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Обсудить проект
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
+                    </details>
+                  );
+                })}
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </div>
