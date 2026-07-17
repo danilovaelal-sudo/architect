@@ -1,3 +1,5 @@
+import { HandNote } from "@/components/site/hand-note";
+
 const recognitions = [
   "Есть история, но нет структуры.",
   "Есть опыт, но непонятно, как сделать из него курс.",
@@ -56,20 +58,27 @@ export function About() {
         </p>
       </div>
 
-      <div className="shadow-soft mx-auto mt-12 max-w-xl rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-8">
-        <h3 className="text-center font-display text-xl text-ink">
-          Что вы получите
-        </h3>
-        <ul className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
-          {outcomes.map((item) => (
-            <li key={item} className="flex gap-3 text-sm text-ink-soft">
-              <span aria-hidden="true" className="text-clay">
-                —
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
+      <div className="relative mx-auto mt-12 max-w-xl">
+        <HandNote
+          text="это уже кое-что :)"
+          arrow="down-left"
+          className="-right-4 -top-14 hidden rotate-6 sm:-right-10 sm:block"
+        />
+        <div className="shadow-soft rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-8">
+          <h3 className="text-center font-display text-xl text-ink">
+            Что вы получите
+          </h3>
+          <ul className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
+            {outcomes.map((item) => (
+              <li key={item} className="flex gap-3 text-sm text-ink-soft">
+                <span aria-hidden="true" className="text-clay">
+                  —
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

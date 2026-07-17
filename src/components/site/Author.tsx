@@ -1,4 +1,5 @@
 import { authorPhoto } from "@/data/site-settings";
+import { HandNote } from "@/components/site/hand-note";
 
 export function Author() {
   return (
@@ -15,30 +16,37 @@ export function Author() {
         className="pointer-events-none absolute -right-24 top-32 h-64 w-64 rounded-full bg-clay/10 blur-3xl"
       />
       <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-        <div className="shadow-lift w-full max-w-[240px] overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
-          {authorPhoto.available ? (
-            <picture>
-              <source srcSet={authorPhoto.avifSrc} type="image/avif" />
-              <source srcSet={authorPhoto.webpSrc} type="image/webp" />
-              <img
-                src={authorPhoto.jpgSrc}
-                alt={authorPhoto.alt}
-                width={authorPhoto.width}
-                height={authorPhoto.height}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </picture>
-          ) : (
-            <div
-              aria-hidden="true"
-              className="flex h-full w-full items-center justify-center"
-            >
-              <span className="font-display text-5xl italic text-clay/50">
-                ЕД
-              </span>
-            </div>
-          )}
+        <div className="relative w-full max-w-[240px]">
+          <HandNote
+            text="это я"
+            arrow="down-left"
+            className="-right-2 -top-12 hidden -rotate-6 sm:-right-16 sm:block"
+          />
+          <div className="shadow-lift overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
+            {authorPhoto.available ? (
+              <picture>
+                <source srcSet={authorPhoto.avifSrc} type="image/avif" />
+                <source srcSet={authorPhoto.webpSrc} type="image/webp" />
+                <img
+                  src={authorPhoto.jpgSrc}
+                  alt={authorPhoto.alt}
+                  width={authorPhoto.width}
+                  height={authorPhoto.height}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
+            ) : (
+              <div
+                aria-hidden="true"
+                className="flex h-full w-full items-center justify-center"
+              >
+                <span className="font-display text-5xl italic text-clay/50">
+                  ЕД
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         <span className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-clay">

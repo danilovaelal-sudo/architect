@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HandNote } from "@/components/site/hand-note";
 import { directions } from "@/data/directions";
 import { services } from "@/data/services";
 import { siteSettings } from "@/data/site-settings";
@@ -51,22 +52,29 @@ export function Services() {
           </ul>
         </nav>
 
-        <div className="shadow-soft mx-auto mt-10 max-w-2xl rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-6 text-center sm:p-8">
-          <h3 className="font-display text-xl text-ink">
-            Не знаете, что выбрать?
-          </h3>
-          <ul className="mx-auto mt-5 flex flex-wrap justify-center gap-2">
-            {pickerOptions.map((option) => (
-              <li key={option.label}>
-                <a
-                  href={`#${option.target}`}
-                  className="flex min-h-11 items-center rounded-full border border-line px-4 text-sm text-ink-soft transition-colors hover:border-clay hover:text-clay"
-                >
-                  {option.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="relative mx-auto mt-10 max-w-2xl">
+          <HandNote
+            text="выберите любой"
+            arrow="down-right"
+            className="-left-4 -top-14 hidden -rotate-6 sm:-left-10 sm:block"
+          />
+          <div className="shadow-soft rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-6 text-center sm:p-8">
+            <h3 className="font-display text-xl text-ink">
+              Не знаете, что выбрать?
+            </h3>
+            <ul className="mx-auto mt-5 flex flex-wrap justify-center gap-2">
+              {pickerOptions.map((option) => (
+                <li key={option.label}>
+                  <a
+                    href={`#${option.target}`}
+                    className="flex min-h-11 items-center rounded-full border border-line px-4 text-sm text-ink-soft transition-colors hover:border-clay hover:text-clay"
+                  >
+                    {option.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-16 space-y-16">
