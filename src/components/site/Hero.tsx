@@ -10,6 +10,10 @@ export function Hero() {
     >
       <div
         aria-hidden
+        className="ruled-grid pointer-events-none absolute inset-0 -z-10"
+      />
+      <div
+        aria-hidden
         className="pointer-events-none absolute -right-32 -top-24 h-96 w-96 rounded-full bg-clay/10 blur-3xl"
       />
       <div

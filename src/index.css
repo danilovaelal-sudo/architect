@@ -100,18 +100,25 @@
 
   .paper-texture {
     background-color: var(--color-paper);
-    background-image:
-      repeating-linear-gradient(
-        90deg,
-        rgba(42, 36, 29, 0.05) 0,
-        rgba(42, 36, 29, 0.05) 1px,
-        transparent 1px,
-        transparent 128px
-      ),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16 0 0 0 0 0.14 0 0 0 0 0.11 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:
-      128px 100%,
-      180px 180px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16 0 0 0 0 0.14 0 0 0 0 0.11 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  /*
+   * Линованная сетка — используется только в первом экране (Hero),
+   * а не по всей странице (Этап 15: «используй фоновую сетку более
+   * избирательно»). Значения совпадают с прежним общим фоном, поэтому
+   * первый экран визуально не меняется.
+   */
+  .ruled-grid {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(42, 36, 29, 0.05) 0,
+      rgba(42, 36, 29, 0.05) 1px,
+      transparent 1px,
+      transparent 128px
+    );
+    background-size: 128px 100%;
   }
 
   .hand-note {

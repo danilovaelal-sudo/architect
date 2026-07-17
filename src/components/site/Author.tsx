@@ -4,7 +4,7 @@ export function Author() {
   return (
     <section id="author" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-        <div className="w-full max-w-[240px] overflow-hidden rounded-3xl border border-line bg-paper-soft/60 aspect-[3/4]">
+        <div className="w-full max-w-[240px] overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
           {authorPhoto.available ? (
             <picture>
               <source srcSet={authorPhoto.avifSrc} type="image/avif" />
