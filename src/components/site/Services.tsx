@@ -51,7 +51,7 @@ export function Services() {
           </ul>
         </nav>
 
-        <div className="mx-auto mt-10 max-w-2xl rounded-2xl border border-line bg-paper-soft/50 p-6 text-center sm:p-8">
+        <div className="shadow-soft mx-auto mt-10 max-w-2xl rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-6 text-center sm:p-8">
           <h3 className="font-display text-xl text-ink">
             Не знаете, что выбрать?
           </h3>

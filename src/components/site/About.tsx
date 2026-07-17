@@ -56,7 +56,7 @@ export function About() {
         </p>
       </div>
 
-      <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-line bg-paper-soft/50 p-8">
+      <div className="shadow-soft mx-auto mt-12 max-w-xl rounded-2xl border border-line bg-gradient-to-b from-paper-soft/70 to-paper-soft/30 p-8">
         <h3 className="text-center font-display text-xl text-ink">
           Что вы получите
         </h3>
