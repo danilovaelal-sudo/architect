@@ -31,27 +31,16 @@ export const siteSettings = {
 /**
  * Фотография автора (Этап 10).
  *
- * В репозитории пока нет файла фотографии — секция «Обо мне» показывает
- * адаптивную типографскую заглушку вместо фото (не сломанную картинку и
- * не случайный сток с человеком).
- *
- * Чтобы добавить настоящую фотографию:
- * 1. Положите файлы в public/author/ с именами:
- *      elena.avif
- *      elena.webp
- *      elena.jpg   (обязательный fallback)
- *    Рекомендации: портретная ориентация, соотношение сторон 3:4,
- *    минимум 900 px по длинной стороне, лицо в верхней трети кадра.
- * 2. Установите `available: true` ниже.
- * 3. При необходимости уточните `alt` — сейчас это только имя, без
- *    описания позы/фона, которое нельзя подтвердить без самого файла.
+ * Файлы лежат в public/author/ (elena.avif, elena.webp, elena.jpg —
+ * сгенерированы из портрета, присланного Еленой; исходник сжат до
+ * 900px по ширине для производительности).
  */
 export const authorPhoto = {
-  available: false,
+  available: true,
   avifSrc: `${import.meta.env.BASE_URL}author/elena.avif`,
   webpSrc: `${import.meta.env.BASE_URL}author/elena.webp`,
   jpgSrc: `${import.meta.env.BASE_URL}author/elena.jpg`,
   alt: "Елена Данилова",
   width: 900,
-  height: 1200,
+  height: 1349,
 };
