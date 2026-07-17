@@ -11,6 +11,14 @@ function getService(number: string) {
   return service;
 }
 
+const pickerOptions = [
+  { label: "У меня пока только идея", target: "direction-orientation" },
+  { label: "Хочу написать книгу", target: "direction-book" },
+  { label: "Нужно собрать курс", target: "direction-product" },
+  { label: "Нужны тексты или сайт", target: "direction-product" },
+  { label: "Пока не знаю, что выбрать", target: "direction-orientation" },
+];
+
 export function Services() {
   return (
     <section id="services" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
@@ -41,6 +49,24 @@ export function Services() {
             ))}
           </ul>
         </nav>
+
+        <div className="mx-auto mt-10 max-w-2xl rounded-3xl border border-line bg-paper-soft/50 p-6 text-center sm:p-8">
+          <h3 className="font-display text-xl text-ink">
+            Не знаете, что выбрать?
+          </h3>
+          <ul className="mx-auto mt-5 flex flex-wrap justify-center gap-2">
+            {pickerOptions.map((option) => (
+              <li key={option.label}>
+                <a
+                  href={`#${option.target}`}
+                  className="flex min-h-11 items-center rounded-full border border-line px-4 text-sm text-ink-soft transition-colors hover:border-clay hover:text-clay"
+                >
+                  {option.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="mt-16 space-y-16">
           {directions.map((direction) => (
