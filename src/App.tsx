@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/site/HowItWorks";
 import { Author } from "@/components/site/Author";
 import { Testimonials } from "@/components/site/Testimonials";
 import { HowToOrder } from "@/components/site/HowToOrder";
+import { MobileOrderCta } from "@/components/site/MobileOrderCta";
 import { Footer } from "@/components/site/Footer";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <HowToOrder />
       </main>
       <Footer />
+      <MobileOrderCta />
     </div>
   );
 }
