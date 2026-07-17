@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { directions } from "@/data/directions";
 import { services } from "@/data/services";
+import { siteSettings } from "@/data/site-settings";
 
 function getService(number: string) {
   const service = services.find((s) => s.number === number);
@@ -176,7 +177,7 @@ export function Services() {
                             className="mt-6 w-full"
                           >
                             <a
-                              href="https://vk.me/danilovaelal"
+                              href={siteSettings.contactUrl}
                               target="_blank"
                               rel="noopener noreferrer"
                             >

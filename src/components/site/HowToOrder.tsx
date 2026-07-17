@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { KineticReveal } from "@/components/site/animated-text";
 import { HandNote } from "@/components/site/hand-note";
+import { siteSettings } from "@/data/site-settings";
 
 const topics = [
   "книга",
@@ -59,7 +60,7 @@ export function HowToOrder() {
             />
             <Button asChild size="default">
               <a
-                href="https://vk.me/danilovaelal"
+                href={siteSettings.contactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
