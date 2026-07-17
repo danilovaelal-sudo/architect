@@ -1,5 +1,6 @@
 import { navLinks } from "@/data/navigation";
 import { siteSettings } from "@/data/site-settings";
+import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -25,8 +26,12 @@ export function Footer() {
           <ul className="mt-4 space-y-2">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="transition-colors hover:text-clay">
+                <a
+                  href={link.href}
+                  className="group relative transition-colors hover:text-clay"
+                >
                   {link.label}
+                  <SquiggleUnderline className="text-clay" />
                 </a>
               </li>
             ))}
@@ -43,9 +48,10 @@ export function Footer() {
                 href={siteSettings.contactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-clay"
+                className="group relative transition-colors hover:text-clay"
               >
                 ВКонтакте
+                <SquiggleUnderline className="text-clay" />
               </a>
             </li>
           </ul>
@@ -63,8 +69,9 @@ export function Footer() {
 
       <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center justify-between gap-4 border-t border-line/70 pt-6 sm:flex-row">
         <p>© {year} Смысловая мастерская</p>
-        <a href="#top" className="transition-colors hover:text-clay">
+        <a href="#top" className="group relative transition-colors hover:text-clay">
           Наверх ↑
+          <SquiggleUnderline className="text-clay" />
         </a>
       </div>
     </footer>

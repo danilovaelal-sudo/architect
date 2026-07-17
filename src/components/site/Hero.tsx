@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { AssemblingLetters } from "@/components/site/animated-text";
 import { HandNote } from "@/components/site/hand-note";
+import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
 
 export function Hero() {
   return (
@@ -54,9 +55,10 @@ export function Hero() {
           </Button>
           <a
             href="#about"
-            className="text-sm text-ink-soft underline underline-offset-4 transition-colors hover:text-clay"
+            className="group relative text-sm text-ink-soft transition-colors hover:text-clay"
           >
             О мастерской
+            <SquiggleUnderline className="text-clay" />
           </a>
         </div>
 
