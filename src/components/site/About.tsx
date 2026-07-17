@@ -1,5 +1,6 @@
 import { HandNote } from "@/components/site/hand-note";
 import { KineticReveal } from "@/components/site/animated-text";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 
 const recognitions = [
   "Есть история, но нет структуры.",
@@ -70,12 +71,17 @@ export function About() {
             Что вы получите
           </h3>
           <ul className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
-            {outcomes.map((item) => (
-              <li key={item} className="flex gap-3 text-sm text-ink-soft">
-                <span aria-hidden="true" className="text-clay">
-                  —
-                </span>
-                {item}
+            {outcomes.map((item, i) => (
+              <li key={item}>
+                <ScrollReveal
+                  delay={i * 60}
+                  className="flex gap-3 text-sm text-ink-soft"
+                >
+                  <span aria-hidden="true" className="text-clay">
+                    —
+                  </span>
+                  {item}
+                </ScrollReveal>
               </li>
             ))}
           </ul>

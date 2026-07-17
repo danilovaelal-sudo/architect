@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HandNote } from "@/components/site/hand-note";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { directions } from "@/data/directions";
 import { services } from "@/data/services";
 import { siteSettings } from "@/data/site-settings";
@@ -84,6 +85,7 @@ export function Services() {
               id={`direction-${direction.id}`}
               className="scroll-mt-24"
             >
+              <ScrollReveal>
               <div className="max-w-2xl">
                 <h3 className="font-display text-2xl text-ink md:text-3xl">
                   {direction.title}
@@ -198,6 +200,7 @@ export function Services() {
                   );
                 })}
               </div>
+              </ScrollReveal>
             </div>
           ))}
         </div>

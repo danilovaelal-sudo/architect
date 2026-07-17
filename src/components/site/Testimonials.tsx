@@ -1,5 +1,6 @@
 import { testimonials } from "@/data/testimonials";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
 
 export function Testimonials() {
   if (testimonials.length === 0) {
@@ -19,8 +20,10 @@ export function Testimonials() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} {...testimonial} />
+          {testimonials.map((testimonial, i) => (
+            <ScrollReveal key={testimonial.name} delay={i * 80}>
+              <TestimonialCard {...testimonial} />
+            </ScrollReveal>
           ))}
         </div>
       </div>
