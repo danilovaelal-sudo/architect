@@ -6,6 +6,7 @@ import { Services } from "@/components/site/Services";
 import { HowItWorks } from "@/components/site/HowItWorks";
 import { Author } from "@/components/site/Author";
 import { Testimonials } from "@/components/site/Testimonials";
+import { Faq } from "@/components/site/Faq";
 import { HowToOrder } from "@/components/site/HowToOrder";
 import { MobileOrderCta } from "@/components/site/MobileOrderCta";
 import { Footer } from "@/components/site/Footer";
@@ -38,6 +39,7 @@ function App() {
         <HowItWorks />
         <Author />
         <Testimonials />
+        <Faq />
         <HowToOrder />
       </main>
       <Footer />
