@@ -92,9 +92,9 @@ export function Services() {
                     <details
                       key={number}
                       id={`format-${number}`}
-                      className="group scroll-mt-28 rounded-2xl border border-line bg-paper-soft/40 open:bg-paper-soft/60"
+                      className="group shadow-soft scroll-mt-28 rounded-2xl border border-line bg-paper-soft/40 transition-shadow duration-300 open:bg-paper-soft/60 open:shadow-lift"
                     >
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 marker:content-none">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 transition-transform duration-200 marker:content-none hover:-translate-y-0.5">
                         <span className="font-display text-lg text-ink md:text-xl">
                           {service.title}
                         </span>
@@ -153,7 +153,7 @@ export function Services() {
                           </p>
                         )}
 
-                        <div className="mt-6 rounded-2xl border border-line bg-paper p-5">
+                        <div className="shadow-soft mt-6 rounded-2xl border border-line bg-paper p-5">
                           <ul className="space-y-3">
                             {service.prices.map((price) => (
                               <li
