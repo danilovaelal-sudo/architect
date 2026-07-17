@@ -35,24 +35,31 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mt-8 max-w-xl text-balance text-lg leading-relaxed text-ink-soft">
-          Я помогаю собирать опыт, идеи, тексты и внутренние переходы в
-          понятную форму. В книгу. В курс. В сайт. В текст. В ясное
-          предложение. В проект, который уже можно показать людям.
+          Помогаю экспертам и авторам превратить опыт, идеи и внутренние
+          переходы в книгу, курс, сайт, текст или ясное предложение.
         </p>
 
-        <div className="relative mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="relative mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <HandNote
             text="начните здесь"
             arrow="down-right"
             className="-left-6 -top-14 hidden -rotate-6 sm:-left-10 sm:block"
           />
           <Button asChild size="default">
-            <a href="#services">Смотреть форматы</a>
+            <a href="#services">Подобрать формат работы</a>
           </Button>
-          <Button asChild variant="outline" size="default">
-            <a href="#about">О мастерской</a>
-          </Button>
+          <a
+            href="#about"
+            className="text-sm text-ink-soft underline underline-offset-4 transition-colors hover:text-clay"
+          >
+            О мастерской
+          </a>
         </div>
+
+        <p className="mx-auto mt-6 max-w-md text-balance text-sm text-ink-soft">
+          Можно прийти без готового технического задания — достаточно
+          описать, что сейчас не складывается.
+        </p>
       </div>
     </section>
   );
