@@ -1,5 +1,6 @@
 import { authorPhoto } from "@/data/site-settings";
 import { HandNote } from "@/components/site/hand-note";
+import { KineticReveal } from "@/components/site/animated-text";
 
 export function Author() {
   return (
@@ -58,8 +59,11 @@ export function Author() {
         <p className="mx-auto mt-6 max-w-xl leading-relaxed text-ink-soft">
           Я — автор и ведущая «Смысловой мастерской». Работаю с теми, у кого
           есть опыт, идея или история, но пока не хватает формы, чтобы её
-          показать: помогаю собрать это в книгу, курс, сайт, текст или ясное
-          предложение.
+          показать:{" "}
+          <KineticReveal
+            text="помогаю собрать это в книгу, курс, сайт, текст или ясное предложение."
+            className="text-ink"
+          />
         </p>
       </div>
     </section>

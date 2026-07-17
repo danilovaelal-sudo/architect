@@ -1,4 +1,5 @@
 import { HandNote } from "@/components/site/hand-note";
+import { KineticReveal } from "@/components/site/animated-text";
 
 const recognitions = [
   "Есть история, но нет структуры.",
@@ -24,7 +25,7 @@ export function About() {
           О мастерской
         </span>
         <h2 className="mt-4 text-balance font-display text-3xl leading-tight text-ink md:text-4xl">
-          «У меня много всего внутри, но я не понимаю, как это собрать»
+          <KineticReveal text="«У меня много всего внутри, но я не понимаю, как это собрать»" />
         </h2>
         <p className="mx-auto mt-6 max-w-xl leading-relaxed text-ink-soft">
           Очень часто человек приходит не с готовой идеей, а с этим
