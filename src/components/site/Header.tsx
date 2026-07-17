@@ -2,17 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
-
-const links = [
-  { href: "#about", label: "О мастерской" },
-  { href: "#services", label: "Форматы" },
-  { href: "#order", label: "Как заказать" },
-];
+import { navLinks } from "@/data/navigation";
 
 const MOBILE_MENU_ID = "mobile-nav";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -39,12 +36,46 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.href))
+      .filter((el): el is Element => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) return;
+        const topMost = visible.reduce((a, b) =>
+          a.boundingClientRect.top < b.boundingClientRect.top ? a : b,
+        );
+        setActiveHref(`#${topMost.target.id}`);
+      },
+      { rootMargin: "-45% 0px -45% 0px" },
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-sm"
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <div
+        className={`mx-auto flex max-w-5xl items-center justify-between px-6 transition-[padding] duration-300 ${
+          scrolled ? "py-2.5" : "py-4"
+        }`}
+      >
         <a
           href="#top"
           className="font-display text-xl font-medium tracking-tight text-ink transition-colors hover:text-clay sm:text-2xl"
@@ -53,11 +84,15 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="group relative text-sm text-ink-soft transition-colors hover:text-clay"
+              data-active={activeHref === link.href}
+              aria-current={activeHref === link.href ? "true" : undefined}
+              className={`group relative text-sm transition-colors hover:text-clay ${
+                activeHref === link.href ? "text-clay" : "text-ink-soft"
+              }`}
             >
               {link.label}
               <SquiggleUnderline className="text-clay" />
@@ -88,12 +123,15 @@ export function Header() {
           className="border-t border-line/70 bg-paper px-6 py-4 md:hidden"
         >
           <ul className="flex flex-col gap-1">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-base text-ink-soft transition-colors hover:text-clay"
+                  aria-current={activeHref === link.href ? "true" : undefined}
+                  className={`block py-3 text-base transition-colors hover:text-clay ${
+                    activeHref === link.href ? "text-clay" : "text-ink-soft"
+                  }`}
                 >
                   {link.label}
                 </a>

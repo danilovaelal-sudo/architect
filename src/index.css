@@ -93,7 +93,8 @@
     transition: stroke-dashoffset 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .group:hover .squiggle-path {
+  .group:hover .squiggle-path,
+  .group[data-active="true"] .squiggle-path {
     stroke-dashoffset: 0;
   }
 
