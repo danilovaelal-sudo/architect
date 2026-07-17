@@ -2,9 +2,20 @@ import { authorPhoto } from "@/data/site-settings";
 
 export function Author() {
   return (
-    <section id="author" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
-      <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-        <div className="w-full max-w-[240px] overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
+    <section
+      id="author"
+      className="relative scroll-mt-20 overflow-hidden border-t border-line/70 px-6 py-24"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 top-32 h-64 w-64 rounded-full bg-clay/10 blur-3xl"
+      />
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="shadow-lift w-full max-w-[240px] overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
           {authorPhoto.available ? (
             <picture>
               <source srcSet={authorPhoto.avifSrc} type="image/avif" />
