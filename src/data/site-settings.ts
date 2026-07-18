@@ -6,6 +6,12 @@ export const siteSettings = {
   /** Основной канал связи. */
   contactUrl: "https://vk.me/danilovaelal",
 
+  /** Телеграм (подтверждено Еленой). */
+  telegramUrl: "https://t.me/danilovaelal",
+
+  /** Почта (подтверждено Еленой). */
+  email: "Ddanilovaelal@yandex.ru",
+
   /** Срок ответа на первое сообщение (подтверждено Еленой). */
   responseTime: "в течение дня",
 

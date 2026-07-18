@@ -54,6 +54,26 @@ export function Footer() {
                 <SquiggleUnderline className="text-clay" />
               </a>
             </li>
+            <li>
+              <a
+                href={siteSettings.telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative transition-colors hover:text-clay"
+              >
+                Телеграм
+                <SquiggleUnderline className="text-clay" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${siteSettings.email}`}
+                className="group relative transition-colors hover:text-clay"
+              >
+                {siteSettings.email}
+                <SquiggleUnderline className="text-clay" />
+              </a>
+            </li>
           </ul>
 
           {/*
