@@ -1,3 +1,6 @@
+import { useInView } from "@/hooks/use-in-view";
+import { cn } from "@/lib/utils";
+
 const steps = [
   "Вы коротко описываете ситуацию.",
   "Елена задаёт уточняющие вопросы.",
@@ -7,6 +10,8 @@ const steps = [
 ];
 
 export function HowItWorks() {
+  const { ref, inView } = useInView<HTMLOListElement>({ threshold: 0.2 });
+
   return (
     <section
       id="how-it-works"
@@ -22,19 +27,33 @@ export function HowItWorks() {
           </h2>
         </div>
 
-        <ol className="mx-auto mt-12 space-y-8">
-          {steps.map((step, index) => (
-            <li key={step} className="flex items-start gap-5">
-              <span
-                aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line font-display text-lg text-clay"
-              >
-                {index + 1}
-              </span>
-              <p className="mt-1.5 leading-relaxed text-ink">{step}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="relative mx-auto mt-12">
+          <div
+            aria-hidden="true"
+            className="absolute left-5 top-5 bottom-5 w-px bg-line"
+          />
+          <div
+            aria-hidden="true"
+            className={cn(
+              "absolute left-5 top-5 bottom-5 w-px origin-top scale-y-0 bg-clay transition-transform duration-[1200ms] ease-out",
+              inView && "scale-y-100",
+            )}
+          />
+
+          <ol ref={ref} className="space-y-8">
+            {steps.map((step, index) => (
+              <li key={step} className="flex items-start gap-5">
+                <span
+                  aria-hidden="true"
+                  className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper font-display text-lg text-clay"
+                >
+                  {index + 1}
+                </span>
+                <p className="mt-1.5 leading-relaxed text-ink">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );
