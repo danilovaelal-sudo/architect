@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { AssemblingLetters } from "@/components/site/animated-text";
 import { HandNote } from "@/components/site/hand-note";
-import { SquiggleUnderline } from "@/components/ui/squiggle-underline";
 
 export function Hero() {
   return (
@@ -40,8 +39,12 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mt-8 max-w-xl text-balance text-lg leading-relaxed text-ink-soft">
-          Помогаю экспертам и авторам превратить опыт, идеи и внутренние
-          переходы в книгу, курс, сайт, текст или ясное предложение.
+          У вас уже может быть всё: опыт, заметки, тексты, уроки, старые
+          курсы, идеи будущей книги. Но всё это лежит кусками, повторяется
+          и не складывается в одно целое. Я нахожу в этом основную линию и
+          собираю структуру, с которой можно работать дальше — книгу,
+          курс, методическое пособие, сайт. Или для начала просто ясное
+          понимание того, что у вас есть.
         </p>
 
         <div className="relative mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -51,20 +54,17 @@ export function Hero() {
             className="-left-6 -top-14 hidden -rotate-6 sm:-left-10 sm:block"
           />
           <Button asChild size="default">
-            <a href="#services">Подобрать формат работы</a>
+            <a href="#services">Посмотреть форматы работы</a>
           </Button>
-          <a
-            href="#about"
-            className="group relative text-sm text-ink-soft transition-colors hover:text-clay"
-          >
-            О мастерской
-            <SquiggleUnderline className="text-clay" />
-          </a>
+          <Button asChild variant="outline" size="default">
+            <a href="#order">Обсудить задачу</a>
+          </Button>
         </div>
 
         <p className="mx-auto mt-6 max-w-md text-balance text-sm text-ink-soft">
-          Можно прийти без готового технического задания — достаточно
-          описать, что сейчас не складывается.
+          Необязательно готовить техническое задание. Можно просто
+          показать, что у вас уже есть, и рассказать, что именно не
+          получается собрать.
         </p>
       </div>
     </section>
