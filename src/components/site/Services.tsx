@@ -4,6 +4,7 @@ import { HandNote } from "@/components/site/hand-note";
 import { ScrollReveal } from "@/components/site/scroll-reveal";
 import { directions } from "@/data/directions";
 import { services } from "@/data/services";
+import { selfGuidedMaterials } from "@/data/selfGuidedMaterials";
 import { siteSettings } from "@/data/site-settings";
 
 function getService(number: string) {
@@ -15,11 +16,11 @@ function getService(number: string) {
 }
 
 const pickerOptions = [
-  { label: "У меня пока только идея", target: "direction-orientation" },
+  { label: "У меня пока только идея", target: "direction-structure" },
   { label: "Хочу написать книгу", target: "direction-book" },
-  { label: "Нужно собрать курс", target: "direction-product" },
-  { label: "Нужны тексты или сайт", target: "direction-product" },
-  { label: "Пока не знаю, что выбрать", target: "direction-orientation" },
+  { label: "Нужно собрать курс, методичку или сайт", target: "direction-product" },
+  { label: "Хочу учиться самостоятельно, в своём темпе", target: "self-guided" },
+  { label: "Пока не знаю, что выбрать", target: "direction-structure" },
 ];
 
 export function Services() {
@@ -34,24 +35,6 @@ export function Services() {
             Что можно заказать в Смысловой мастерской
           </h2>
         </div>
-
-        <nav
-          aria-label="Быстрый переход к направлению"
-          className="mt-10 flex flex-wrap justify-center gap-2"
-        >
-          <ul className="flex flex-wrap justify-center gap-2">
-            {directions.map((direction) => (
-              <li key={direction.id}>
-                <a
-                  href={`#direction-${direction.id}`}
-                  className="flex min-h-11 items-center rounded-full border border-line px-4 text-sm text-ink-soft transition-colors hover:border-clay hover:text-clay"
-                >
-                  {direction.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
 
         <div className="relative mx-auto mt-10 max-w-2xl">
           <HandNote
@@ -80,63 +63,39 @@ export function Services() {
 
         <div className="mt-16 space-y-16">
           {directions.map((direction) => (
-            <div
-              key={direction.id}
-              id={`direction-${direction.id}`}
-              className="scroll-mt-24"
-            >
+            <div key={direction.id} id={`direction-${direction.id}`} className="scroll-mt-24">
               <ScrollReveal>
-              <div className="max-w-2xl">
-                <h3 className="font-display text-2xl text-ink md:text-3xl">
-                  {direction.title}
-                </h3>
-                <p className="mt-2 leading-relaxed text-ink-soft">
-                  {direction.description}
-                </p>
-              </div>
+                <div className="max-w-2xl">
+                  <h3 className="font-display text-2xl text-ink md:text-3xl">
+                    {direction.title}
+                  </h3>
+                  <p className="mt-2 leading-relaxed text-ink-soft">
+                    {direction.description}
+                  </p>
+                </div>
 
-              <div className="mt-8 space-y-4">
-                {direction.serviceNumbers.map((number) => {
-                  const service = getService(number);
-                  return (
-                    <details
-                      key={number}
-                      id={`format-${number}`}
-                      className="group shadow-soft scroll-mt-28 rounded-2xl border border-line bg-paper-soft/40 transition-shadow duration-300 open:bg-paper-soft/60 open:shadow-lift"
-                    >
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 transition-transform duration-200 marker:content-none hover:-translate-y-0.5">
-                        <span className="font-display text-lg text-ink md:text-xl">
+                <div className="mt-8 space-y-4">
+                  {direction.serviceNumbers.map((number) => {
+                    const service = getService(number);
+                    const hasDetails = Boolean(
+                      service.included || service.format || service.note,
+                    );
+
+                    return (
+                      <div
+                        key={number}
+                        id={`format-${number}`}
+                        className="shadow-soft scroll-mt-28 rounded-2xl border border-line bg-paper-soft/40 p-5 sm:p-6"
+                      >
+                        <h4 className="font-display text-lg text-ink md:text-xl">
                           {service.title}
-                        </span>
-                        <ChevronDown
-                          aria-hidden="true"
-                          className="h-5 w-5 shrink-0 text-ink-soft transition-transform duration-300 group-open:rotate-180"
-                        />
-                      </summary>
-
-                      <div className="px-5 pb-6 sm:px-6">
-                        <p className="leading-relaxed text-ink-soft">
+                        </h4>
+                        <p className="mt-2 leading-relaxed text-ink-soft">
                           {service.forWhom}
                         </p>
 
-                        {service.included && (
-                          <ul className="mt-5 space-y-2">
-                            {service.included.map((item) => (
-                              <li
-                                key={item}
-                                className="flex gap-2 text-sm leading-snug text-ink-soft"
-                              >
-                                <span aria-hidden="true" className="text-clay">
-                                  —
-                                </span>
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-
                         {service.result && (
-                          <div className="mt-5">
+                          <div className="mt-4">
                             <p className="text-xs font-medium uppercase tracking-[0.15em] text-clay">
                               Результат
                             </p>
@@ -146,24 +105,7 @@ export function Services() {
                           </div>
                         )}
 
-                        {service.format && (
-                          <div className="mt-5">
-                            <p className="text-xs font-medium uppercase tracking-[0.15em] text-clay">
-                              Формат
-                            </p>
-                            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                              {service.format}
-                            </p>
-                          </div>
-                        )}
-
-                        {service.note && (
-                          <p className="mt-5 border-l-2 border-clay/40 pl-4 text-sm italic leading-relaxed text-ink-soft">
-                            {service.note}
-                          </p>
-                        )}
-
-                        <div className="shadow-soft mt-6 rounded-2xl border border-line bg-paper p-5">
+                        <div className="shadow-soft mt-5 rounded-2xl border border-line bg-paper p-5">
                           <ul className="space-y-3">
                             {service.prices.map((price) => (
                               <li
@@ -195,14 +137,99 @@ export function Services() {
                             </a>
                           </Button>
                         </div>
+
+                        {hasDetails && (
+                          <details className="group mt-4">
+                            <summary className="flex cursor-pointer list-none items-center gap-1.5 text-sm text-clay transition-colors hover:text-ink marker:content-none">
+                              Подробнее
+                              <ChevronDown
+                                aria-hidden="true"
+                                className="h-4 w-4 shrink-0 transition-transform duration-300 group-open:rotate-180"
+                              />
+                            </summary>
+
+                            <div className="mt-4">
+                              {service.included && (
+                                <ul className="space-y-2">
+                                  {service.included.map((item) => (
+                                    <li
+                                      key={item}
+                                      className="flex gap-2 text-sm leading-snug text-ink-soft"
+                                    >
+                                      <span aria-hidden="true" className="text-clay">
+                                        —
+                                      </span>
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+
+                              {service.format && (
+                                <div className="mt-4">
+                                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-clay">
+                                    Формат
+                                  </p>
+                                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                                    {service.format}
+                                  </p>
+                                </div>
+                              )}
+
+                              {service.note && (
+                                <p className="mt-4 border-l-2 border-clay/40 pl-4 text-sm italic leading-relaxed text-ink-soft">
+                                  {service.note}
+                                </p>
+                              )}
+                            </div>
+                          </details>
+                        )}
                       </div>
-                    </details>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
               </ScrollReveal>
             </div>
           ))}
+        </div>
+
+        <div id="self-guided" className="mt-16 scroll-mt-24 border-t border-line/70 pt-16">
+          <div className="max-w-2xl">
+            <h3 className="font-display text-2xl text-ink md:text-3xl">
+              Материалы для самостоятельной работы
+            </h3>
+            <p className="mt-2 leading-relaxed text-ink-soft">
+              Для тех, кто хочет учиться в своём темпе, без сопровождения.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {selfGuidedMaterials.map((material) => (
+              <div
+                key={material.id}
+                className="shadow-soft flex flex-col rounded-2xl border border-line bg-paper-soft/40 p-5 sm:p-6"
+              >
+                <h4 className="font-display text-lg text-ink">{material.title}</h4>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
+                  {material.description}
+                </p>
+                <div className="mt-5 flex items-center justify-between gap-3">
+                  <span className="font-display text-lg text-clay">
+                    {material.price}
+                  </span>
+                  <Button asChild variant="outline" size="sm">
+                    <a
+                      href={siteSettings.contactUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {material.ctaLabel}
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
