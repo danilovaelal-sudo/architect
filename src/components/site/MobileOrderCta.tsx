@@ -17,6 +17,8 @@ export function MobileOrderCta() {
     return () => observer.disconnect();
   }, []);
 
+  const encodedMessage = encodeURIComponent("Хочу в Смысловую мастерскую.");
+
   return (
     <div
       className={`fixed inset-x-0 bottom-0 z-30 border-t border-line/70 bg-paper/95 p-4 backdrop-blur-sm transition-transform duration-300 md:hidden ${
@@ -24,11 +26,26 @@ export function MobileOrderCta() {
       }`}
       style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
     >
-      <Button asChild size="default" className="w-full">
-        <a href={`${siteSettings.contactUrl}?text=${encodeURIComponent("Хочу в Смысловую мастерскую.")}`} target="_blank" rel="noopener noreferrer">
-          Обсудить задачу
-        </a>
-      </Button>
+      <div className="flex gap-2">
+        <Button asChild size="default" className="flex-1">
+          <a
+            href={`${siteSettings.contactUrl}?text=${encodedMessage}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ВКонтакте
+          </a>
+        </Button>
+        <Button asChild variant="outline" size="default" className="flex-1">
+          <a
+            href={`${siteSettings.telegramUrl}?text=${encodedMessage}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Telegram
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }

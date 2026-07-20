@@ -22,7 +22,9 @@ export function HowToOrder() {
   const groupName = useId();
 
   const message = topic ? `${BASE_MESSAGE} Тема: ${topic}.` : BASE_MESSAGE;
-  const contactHref = `${siteSettings.contactUrl}?text=${encodeURIComponent(message)}`;
+  const encodedMessage = encodeURIComponent(message);
+  const vkHref = `${siteSettings.contactUrl}?text=${encodedMessage}`;
+  const telegramHref = `${siteSettings.telegramUrl}?text=${encodedMessage}`;
 
   return (
     <section
@@ -89,15 +91,20 @@ export function HowToOrder() {
             Отвечаю {siteSettings.responseTime}.
           </p>
 
-          <div className="relative mt-16 inline-block">
+          <div className="relative mt-16 inline-flex flex-col items-center gap-3 sm:flex-row">
             <HandNote
               text="это просто :)"
               arrow="down-left"
               className="-right-8 -top-16 hidden rotate-6 sm:-right-14 sm:block"
             />
             <Button asChild size="default">
-              <a href={contactHref} target="_blank" rel="noopener noreferrer">
-                Написать мне
+              <a href={vkHref} target="_blank" rel="noopener noreferrer">
+                Написать во ВКонтакте
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="default">
+              <a href={telegramHref} target="_blank" rel="noopener noreferrer">
+                Написать в Telegram
               </a>
             </Button>
           </div>
