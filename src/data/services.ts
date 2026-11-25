@@ -12,11 +12,6 @@ interface WorkFormat {
   ctaLabel: string;
 }
 
-function reviewPrice(value?: string) {
-  const amount = Number(value);
-  return Number.isSafeInteger(amount) && amount > 0 ? amount : undefined;
-}
-
 export const workFormats: WorkFormat[] = [
   {
     id: "format-03",
@@ -38,7 +33,7 @@ export const workFormats: WorkFormat[] = [
     writer: "По договорённости: редактирую ваш черновик или пишу по материалам.",
     result: "Согласованная часть текста по контрольным датам.",
     billingPeriod: "month",
-    amount: import.meta.env.DEV ? reviewPrice(import.meta.env.VITE_REVIEW_PRIORITY_PRICE) : undefined,
+    amount: 100_000,
     ctaLabel: "Обсудить проект",
   },
   {
@@ -49,7 +44,6 @@ export const workFormats: WorkFormat[] = [
     writer: "Я пишу по вашим рассказам и записям, вы читаете и уточняете.",
     result: "Оглавление, пробный фрагмент и рукопись согласованного объёма.",
     billingPeriod: "project",
-    amount: import.meta.env.DEV ? reviewPrice(import.meta.env.VITE_REVIEW_MANUSCRIPT_PRICE) : undefined,
     ctaLabel: "Обсудить проект",
   },
   {
@@ -60,7 +54,6 @@ export const workFormats: WorkFormat[] = [
     writer: "Я готовлю согласованные материалы на основе вашего опыта.",
     result: "Согласованные тексты и материалы, например книга и учебная программа.",
     billingPeriod: "project",
-    amount: import.meta.env.DEV ? reviewPrice(import.meta.env.VITE_REVIEW_AUTHOR_PROJECT_PRICE) : undefined,
     ctaLabel: "Обсудить проект",
   },
 ];
@@ -73,7 +66,9 @@ const currency = new Intl.NumberFormat("ru-RU", {
 
 export function formatPrice({ billingPeriod, amount, startsAt }: WorkFormat) {
   if (amount === undefined) {
-    return billingPeriod === "month" ? "Оплата за месяц" : "Оплата за проект";
+    return billingPeriod === "month"
+      ? "За месяц"
+      : "За проект · стоимость рассчитывается по объёму работы";
   }
 
   const period = billingPeriod === "month" ? "в месяц" : "за проект";
