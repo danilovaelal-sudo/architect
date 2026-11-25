@@ -11,12 +11,16 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     const onClickOutside = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
@@ -26,13 +30,16 @@ export function Header() {
 
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("mousedown", onClickOutside);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const onResize = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", onResize);
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("mousedown", onClickOutside);
-      document.body.style.overflow = previousOverflow;
+      desktop.removeEventListener("change", onResize);
     };
   }, [open]);
 
@@ -83,7 +90,7 @@ export function Header() {
           Смысловая мастерская
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Основная" className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -102,15 +109,16 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href="#order">Написать мне</a>
+            <a href="#order">Связаться</a>
           </Button>
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={open}
-            aria-controls={MOBILE_MENU_ID}
-            className="flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:text-clay md:hidden"
+            aria-controls={open ? MOBILE_MENU_ID : undefined}
+            className="flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:text-clay lg:hidden"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -120,7 +128,8 @@ export function Header() {
       {open && (
         <nav
           id={MOBILE_MENU_ID}
-          className="border-t border-line/70 bg-paper px-6 py-4 md:hidden"
+          aria-label="Основная"
+          className="max-h-[70dvh] overflow-y-auto border-t border-line/70 bg-paper px-6 py-4 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {navLinks.map((link) => (
@@ -144,7 +153,7 @@ export function Header() {
                 className="w-full"
                 onClick={() => setOpen(false)}
               >
-                <a href="#order">Написать мне</a>
+                <a href="#order">Связаться</a>
               </Button>
             </li>
           </ul>

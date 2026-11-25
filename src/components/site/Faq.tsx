@@ -5,14 +5,9 @@ export function Faq() {
   return (
     <section id="faq" className="scroll-mt-20 border-t border-line/70 px-6 py-24">
       <div className="mx-auto max-w-2xl">
-        <div className="text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-clay">
-            Вопросы
-          </span>
-          <h2 className="mt-4 text-balance font-display text-3xl leading-tight text-ink md:text-4xl">
-            Частые вопросы
-          </h2>
-        </div>
+        <h2 className="text-center font-display text-3xl leading-tight text-ink md:text-4xl">
+          Частые вопросы
+        </h2>
 
         <div className="mt-10 space-y-3">
           {faqItems.map((item) => (
@@ -20,7 +15,7 @@ export function Faq() {
               key={item.question}
               className="group shadow-soft rounded-2xl border border-line bg-paper-soft/40 transition-shadow duration-300 open:bg-paper-soft/60 open:shadow-lift"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 transition-transform duration-200 marker:content-none hover:-translate-y-0.5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 transition-transform duration-200 marker:content-none hover:-translate-y-0.5 focus-visible:rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-clay">
                 <span className="font-display text-lg text-ink">
                   {item.question}
                 </span>

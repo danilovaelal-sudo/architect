@@ -58,6 +58,13 @@
     animation-delay: calc(var(--i) * 42ms);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .letter-settle {
+      animation: none;
+      will-change: auto;
+    }
+  }
+
   @keyframes letter-settle {
     from {
       opacity: 0;

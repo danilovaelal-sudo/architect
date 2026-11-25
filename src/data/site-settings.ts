@@ -1,49 +1,24 @@
-/**
- * Централизованные настройки сайта. Заполнять только данными,
- * подтверждёнными Еленой — не публиковать домыслы и предположения.
- */
+const confirmedTelegramUrl = "https://t.me/danilovaelal";
+
 export const siteSettings = {
-  /** Основной канал связи. */
+  authorName: "Елена Бродская",
   contactUrl: "https://vk.me/danilovaelal",
-
-  /** Телеграм (подтверждено Еленой). */
-  telegramUrl: "https://t.me/danilovaelal",
-
-  /** Почта (подтверждено Еленой). */
+  telegramUrl:
+    (import.meta.env.DEV && import.meta.env.VITE_REVIEW_TELEGRAM_URL) || confirmedTelegramUrl,
   email: "Ddanilovaelal@yandex.ru",
-
-  /** Срок ответа на первое сообщение (подтверждено Еленой). */
-  responseTime: "в течение дня",
-
-  /**
-   * TODO (данные от Елены): сколько уточняющих вопросов или итераций
-   * обычно требуется до выбора формата.
-   * Пока не подтверждено — нигде на сайте не публикуется.
-   */
-  iterationsNote: undefined as string | undefined,
-
-  /**
-   * TODO (данные от Елены): детали голосового диалога (платформа,
-   * длительность) сверх уже подтверждённого «в течение дня» для
-   * консультации «Собрать точку опоры».
-   * Пока не подтверждено — нигде на сайте не публикуется.
-   */
-  voiceDialogDetails: undefined as string | undefined,
+  book: {
+    title: "Почему после 40-ка не поздно! И есть ли жизнь после монастыря?",
+    author: "Елена Данилова",
+    year: 2024,
+    url: "https://www.litres.ru/book/elena-danilova-32959/pochemu-posle-40-ka-ne-pozdno-i-est-li-zhizn-posle-mo-70398937/",
+  },
 };
 
-/**
- * Фотография автора (Этап 10).
- *
- * Файлы лежат в public/author/ (elena.avif, elena.webp, elena.jpg —
- * сгенерированы из портрета, присланного Еленой; исходник сжат до
- * 900px по ширине для производительности).
- */
 export const authorPhoto = {
-  available: true,
   avifSrc: `${import.meta.env.BASE_URL}author/elena.avif`,
   webpSrc: `${import.meta.env.BASE_URL}author/elena.webp`,
   jpgSrc: `${import.meta.env.BASE_URL}author/elena.jpg`,
-  alt: "Елена Данилова",
+  alt: siteSettings.authorName,
   width: 900,
   height: 1349,
 };

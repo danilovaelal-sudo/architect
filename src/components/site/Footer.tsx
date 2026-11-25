@@ -12,10 +12,9 @@ export function Footer() {
           <p className="font-display text-lg italic text-ink">
             Смысловая мастерская
           </p>
-          <p className="mt-1">Елена Данилова</p>
+          <p className="mt-1">{siteSettings.authorName}</p>
           <p className="mt-4 max-w-xs leading-relaxed">
-            Помогаю превращать опыт, идеи и внутренние переходы в книгу,
-            курс, сайт, текст или ясное предложение.
+            Написание и редактура книг
           </p>
         </div>
 
@@ -76,21 +75,13 @@ export function Footer() {
             </li>
           </ul>
 
-          {/*
-            TODO (данные от Елены): политика обработки данных и
-            пользовательское соглашение пока не подготовлены — как
-            только появятся документы, заменить текст на ссылки.
-          */}
-          <p className="mt-6 text-xs text-ink-soft">
-            Политика обработки данных · Пользовательское соглашение
-          </p>
         </div>
       </div>
 
       <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center justify-between gap-4 border-t border-line/70 pt-6 sm:flex-row">
         <p>© {year} Смысловая мастерская</p>
         <a href="#top" className="group relative transition-colors hover:text-clay">
-          Наверх ↑
+          Наверх
           <SquiggleUnderline className="text-clay" />
         </a>
       </div>

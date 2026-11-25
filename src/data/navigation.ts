@@ -1,12 +1,6 @@
-export interface NavLink {
-  href: string;
-  label: string;
-}
-
-export const navLinks: NavLink[] = [
-  { href: "#about", label: "О мастерской" },
+export const navLinks = [
   { href: "#services", label: "Форматы" },
-  { href: "#how-it-works", label: "Как проходит работа" },
+  { href: "#how-it-works", label: "Как работаем" },
   { href: "#author", label: "Обо мне" },
-  { href: "#order", label: "Связаться" },
+  { href: "#other-services", label: "Другие задачи" },
 ];

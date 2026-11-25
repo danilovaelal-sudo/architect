@@ -1,70 +1,45 @@
-import { authorPhoto } from "@/data/site-settings";
-import { HandNote } from "@/components/site/hand-note";
-import { KineticReveal } from "@/components/site/animated-text";
+import { Button } from "@/components/ui/button";
+import { authorPhoto, siteSettings } from "@/data/site-settings";
 
 export function Author() {
+  const { authorName, book } = siteSettings;
+
   return (
-    <section
-      id="author"
-      className="relative scroll-mt-20 overflow-hidden border-t border-line/70 px-6 py-24"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-sage/10 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 top-32 h-64 w-64 rounded-full bg-clay/10 blur-3xl"
-      />
-      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-        <div className="relative w-full max-w-[240px]">
-          <HandNote
-            text="это я"
-            arrow="down-left"
-            className="-right-2 -top-12 hidden -rotate-6 sm:-right-16 sm:block"
+    <section id="author" className="scroll-mt-20 border-t border-line/70 px-6 py-16 md:py-20">
+      <div className="mx-auto grid max-w-4xl items-start gap-8 md:grid-cols-[240px_1fr] md:gap-12">
+        <picture className="shadow-lift block w-full max-w-56 overflow-hidden rounded-2xl border border-line bg-paper-soft md:max-w-none">
+          <source srcSet={authorPhoto.avifSrc} type="image/avif" />
+          <source srcSet={authorPhoto.webpSrc} type="image/webp" />
+          <img
+            src={authorPhoto.jpgSrc}
+            alt={authorPhoto.alt}
+            width={authorPhoto.width}
+            height={authorPhoto.height}
+            loading="lazy"
+            className="h-auto w-full"
           />
-          <div className="shadow-lift overflow-hidden rounded-2xl border border-line bg-paper-soft/60 aspect-[3/4]">
-            {authorPhoto.available ? (
-              <picture>
-                <source srcSet={authorPhoto.avifSrc} type="image/avif" />
-                <source srcSet={authorPhoto.webpSrc} type="image/webp" />
-                <img
-                  src={authorPhoto.jpgSrc}
-                  alt={authorPhoto.alt}
-                  width={authorPhoto.width}
-                  height={authorPhoto.height}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </picture>
-            ) : (
-              <div
-                aria-hidden="true"
-                className="flex h-full w-full items-center justify-center"
-              >
-                <span className="font-display text-5xl italic text-clay/50">
-                  ЕД
-                </span>
-              </div>
-            )}
+        </picture>
+        <div>
+          <h2 className="font-display text-3xl text-ink md:text-4xl">Обо мне</h2>
+          <p className="mt-4 leading-relaxed text-ink-soft">
+            Я {authorName}, книжный редактор и наставник. Свою первую книгу я
+            написала о том, что хорошо знаю: о шестнадцати годах в монастыре и
+            о жизни после него. Она вышла под моей прежней фамилией. Сейчас я
+            помогаю другим людям писать о своём опыте. Иногда у человека уже есть
+            десятки глав. Иногда он впервые рассказывает вслух то, о чём давно
+            хотел написать. С обоих вариантов можно начать.
+          </p>
+
+          <div id="book" className="shadow-soft mt-6 scroll-mt-24 rounded-2xl border border-line bg-paper-soft/55 p-5 sm:p-6">
+            <p className="text-sm text-clay">{book.author} · {book.year}</p>
+            <h3 className="mt-2 font-display text-xl leading-tight text-ink">{book.title}</h3>
+            <Button asChild variant="outline" className="mt-4 h-auto min-h-11 max-w-full whitespace-normal px-4 py-2 text-center">
+              <a href={book.url} target="_blank" rel="noopener noreferrer">
+                Посмотреть мою книгу на Литрес
+              </a>
+            </Button>
           </div>
         </div>
-
-        <span className="mt-8 text-xs font-medium uppercase tracking-[0.2em] text-clay">
-          Обо мне
-        </span>
-        <h2 className="mt-4 text-balance font-display text-3xl leading-tight text-ink md:text-4xl">
-          Елена Данилова
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl leading-relaxed text-ink-soft">
-          Я — автор и ведущая «Смысловой мастерской». Работаю с теми, у кого
-          есть опыт, идея или история, но пока не хватает формы, чтобы её
-          показать:{" "}
-          <KineticReveal
-            text="помогаю собрать это в книгу, курс, сайт, текст или ясное предложение."
-            className="text-ink"
-          />
-        </p>
       </div>
     </section>
   );

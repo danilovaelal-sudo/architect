@@ -1,51 +1,42 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { siteSettings } from "@/data/site-settings";
 
 export function MobileOrderCta() {
-  const [orderInView, setOrderInView] = useState(false);
+  const [showCta, setShowCta] = useState(false);
 
   useEffect(() => {
-    const target = document.getElementById("order");
-    if (!target) return;
-
+    const visibleSections = new Set<Element>();
     const observer = new IntersectionObserver(
-      ([entry]) => setOrderInView(entry.isIntersecting),
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.intersectionRatio >= 0.1) {
+            visibleSections.add(entry.target);
+          } else {
+            visibleSections.delete(entry.target);
+          }
+        }
+        setShowCta(visibleSections.size === 0);
+      },
       { threshold: 0.1 },
     );
-    observer.observe(target);
+
+    for (const sectionId of ["top", "order"]) {
+      const section = document.getElementById(sectionId);
+      if (section) observer.observe(section);
+    }
     return () => observer.disconnect();
   }, []);
 
-  const encodedMessage = encodeURIComponent("Хочу в Смысловую мастерскую.");
+  if (!showCta) return null;
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-30 border-t border-line/70 bg-paper/95 p-4 backdrop-blur-sm transition-transform duration-300 md:hidden ${
-        orderInView ? "translate-y-full" : "translate-y-0"
-      }`}
-      style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-line/70 bg-paper/95 p-3 backdrop-blur-sm lg:hidden"
+      style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
-      <div className="flex gap-2">
-        <Button asChild size="default" className="flex-1">
-          <a
-            href={`${siteSettings.contactUrl}?text=${encodedMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ВКонтакте
-          </a>
-        </Button>
-        <Button asChild variant="outline" size="default" className="flex-1">
-          <a
-            href={`${siteSettings.telegramUrl}?text=${encodedMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Telegram
-          </a>
-        </Button>
-      </div>
+      <Button asChild className="w-full">
+        <a href="#order">Обсудить книгу</a>
+      </Button>
     </div>
   );
 }
